@@ -14,10 +14,10 @@ on: # yamllint disable-line rule:truthy
         required: true
         type: string
 
-    push:
-      branches: ['main', 'test']
-      tags:
-        - "v*.*.*"
+  push:
+    branches: ['main', 'test']
+    tags:
+      - "v*.*.*"
 
 env:
   REGISTRY: ghcr.io
