@@ -21,7 +21,7 @@ on: # yamllint disable-line rule:truthy
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: {{ github.GITHUB_REPOSITORY_OWNER }}/opensciencelab-jupyterhub
+  IMAGE_NAME: ${{ github.GITHUB_REPOSITORY_OWNER }}/opensciencelab-jupyterhub
 
 jobs:
   setup:
