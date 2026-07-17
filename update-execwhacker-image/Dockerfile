@@ -1,7 +1,8 @@
 FROM public.ecr.aws/docker/library/python:3.12
 
+# hadolint ignore=DL3008
 RUN apt-get update && \
-    apt-get install -y python3-pip && \
+    apt-get install --no-install-recommends -y python3-pip && \
     python3 -m pip install --no-cache-dir \
     boto3==1.43.50 \
     requests==2.34.2 \
