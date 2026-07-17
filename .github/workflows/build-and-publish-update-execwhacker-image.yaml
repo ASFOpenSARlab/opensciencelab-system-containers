@@ -2,6 +2,8 @@
 # yamllint disable rule:line-length
 # https://docs.github.com/en/actions/publishing-packages/publishing-docker-images
 name: Build and publish image to GHCR to be used to update execwhacker configs in cronjob
+permissions:
+  contents: read
 # Run action manually or when called by another action
 on: # yamllint disable-line rule:truthy
   workflow_dispatch: {}
