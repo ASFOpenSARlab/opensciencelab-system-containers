@@ -21,7 +21,17 @@ def main(
 ):
     cm_name = "cryptnono"
     cm_namespace = "services"
-    cm_label = "app.kubernetes.io/instance=cryptnono"
+    cm_select_label = "app.kubernetes.io/instance=cryptnono"
+    # These labels and annotations are needed so helm knows to own the configmap if created outside the helm chart
+    # These values need to match what is used within CDK
+    cm_labels = {
+        "app.kubernetes.io/instance": "cryptnono",
+        "app.kubernetes.io/managed-by": "Helm",
+    }
+    cm_annotations = {
+        "meta.helm.sh/release-name": "cryptnono",
+        "meta.helm.sh/release-namespace": "services",
+    }
 
     try:
         k8s_config.load_incluster_config()
@@ -102,7 +112,9 @@ def main(
                 print("Configmap doesn't exist. Create one...")
 
                 body = k8s_client.V1ConfigMap()
-                body.metadata = k8s_client.V1ObjectMeta(name=cm_name)
+                body.metadata = k8s_client.V1ObjectMeta(
+                    name=cm_name, labels=cm_labels, annotations=cm_annotations
+                )
                 body.data = configmap_data
                 k8s_api.create_namespaced_config_map(cm_namespace, body)
 
@@ -119,7 +131,7 @@ def main(
 
         # All cryptnono sidecar pods will need to be respawned to get the latest configmaps
         pods = k8s_api.list_namespaced_pod(
-            namespace=cm_namespace, label_selector=cm_label
+            namespace=cm_namespace, label_selector=cm_select_label
         )
 
         for pod in pods.items:
