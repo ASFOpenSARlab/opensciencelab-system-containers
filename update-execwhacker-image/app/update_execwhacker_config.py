@@ -20,7 +20,7 @@ def main(
     aws_profile: Optional[str] = None,
 ):
     cm_name = "cryptnono"
-    cm_namespace = "services"
+    cm_namespace = "cryptnono"
     cm_select_label = "app.kubernetes.io/instance=cryptnono"
     # These labels and annotations are needed so helm knows to own the configmap if created outside the helm chart
     # These values need to match what is used within CDK
@@ -30,7 +30,7 @@ def main(
     }
     cm_annotations = {
         "meta.helm.sh/release-name": "cryptnono",
-        "meta.helm.sh/release-namespace": "services",
+        "meta.helm.sh/release-namespace": "cryptnono",
     }
 
     try:
