@@ -1,5 +1,5 @@
 # https://quay.io/repository/jupyterhub/k8s-hub?tab=tags&tag=latest
-FROM quay.io/jupyterhub/k8s-hub:4.4.2 AS release
+FROM quay.io/jupyterhub/k8s-hub:4.4.5 AS release
 
 # By default, the notebook base image is set to non-sudo user joyvan. This makes root-ful actions difficult.
 USER root
