@@ -32,7 +32,7 @@ RUN python3 -m pip install --no-cache-dir --upgrade \
     awscli \
     pyyaml \
     boto3 \
-    kubernetes==36.0.3 \
+    kubernetes==37.0.3 \
     kubernetes_asyncio \
     opensarlab-backend==1.0.6 \
     helloworld \
